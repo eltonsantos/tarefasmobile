@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-export default function App() {
-  return (
+export default function App(){
+  const [nome, setNome] = useState('Elton')
+
+  function handleMudaNome(){
+    setNome('Sujeito Programador')
+  }
+
+  return(
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.title}>{nome}</Text>
+
+      <TouchableOpacity style={styles.button} onPress={handleMudaNome}>
+        <Text style={styles.buttonText}>Mudar nome</Text>
+      </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  container:{
+    flex:1,
+    backgroundColor: '#f1f1f1',
+    paddingTop: 28,
   },
-});
+  title:{
+    fontSize: 32,
+    color: '#121212',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  button:{
+    backgroundColor: 'blue',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 35
+  },
+  buttonText:{
+    color: '#FFF',
+    fontWeight: 'bold'
+  }
+})
