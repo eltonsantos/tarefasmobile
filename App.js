@@ -4,14 +4,30 @@ import {
   Text, 
   StyleSheet, 
   TouchableOpacity, 
-  TextInput
+  TextInput,
+  FlatList
  } from 'react-native'
 
 import { FontAwesome } from '@expo/vector-icons'
 
+import Tarefa from './src/Tarefa'
+
 export default function App(){
   const [tarefa, setTarefa] = useState('');
-
+  const [list, setList] = useState([
+    {
+      key: '1',
+      item: 'Comprar pao'
+    },
+    {
+      key: '2',
+      item: 'Estudar React Native'
+    },
+    {
+      key: '3',
+      item: 'Pagar conta de luz'
+    },
+  ])
 
   function handleAdd(){
     alert(tarefa)
@@ -33,6 +49,13 @@ export default function App(){
           <FontAwesome name="plus" size={20} color="#FFF" />
         </TouchableOpacity>
       </View>
+
+      <FlatList
+        data={list}
+        keyExtractor={ (item) => item.key}
+        renderItem={ ({ item }) => <Tarefa data={item} /> }
+        style={styles.list}
+      />
 
     </View>
   )
@@ -75,5 +98,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 4
+  },
+  list:{
+    flex:1,
+    backgroundColor: '#FFF',
+    paddingStart: '4%',
+    paddingEnd: '4%'
   }
 })
